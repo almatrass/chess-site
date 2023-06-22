@@ -1,0 +1,26 @@
+<html>
+    <head>
+        {{> head}}
+    </head>
+    <body>
+        <h2>Game code</h2>
+        <input type="text" id="codeInput">
+        <button id="createGame">Create game</button>
+        <button id="joinGame">Join game</button>
+        <div style="color: red" id="errorMessage"></div>
+
+        <script>
+            $('#createGame').on('click', function() {
+                window.location.replace('/white?code=' + $('#codeInput').val());
+            });
+            $('#joinGame').on('click', function() {
+                window.location.replace('/black?code=' + $('#codeInput').val());
+            });
+
+            var urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('error') == 'invalidCode') {
+                $('#errorMessage').text('Invalid invite code');
+            }
+        </script>
+    </body>
+</html>
